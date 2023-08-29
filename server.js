@@ -3,7 +3,7 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-const apiRoutes = require('./routes/apiRoutes');
+const apiRoutes = require('./routes/htmlRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
 
 app.use(express.json);
