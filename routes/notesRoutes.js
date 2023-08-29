@@ -1,10 +1,14 @@
 const router = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
-
-const { createNewNote, findById, editNote, removeNote } = require('../lib/notes');
+const db = require('../db/db.json');
+const { createNewNote, findById, editNote, removeNote, readFromFile } = require('../lib/notes');
 const fakeNote = {a:'hi',b:'loser'};
-router.get('/notes', (req, res) => {
-    res.json(fakeNote);
+
+router.get('/notes', async (req, res) => {
+    const notes = await readFromFile("./db/db.json");
+    const parsedNotes = JSON.parse(notes)
+    // readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+    return res.json(parsedNotes);
 });
 
 router.post('/notes', (req, res) => {
